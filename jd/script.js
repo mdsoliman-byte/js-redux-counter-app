@@ -28,15 +28,8 @@ function createReducer(state = InitialState, action) {
 
 
 // Create Store
+const store = createStore(createReducer);
 
-const store = createStore(createReducer,);
 
-// Increment
-Increment.addEventListener("click", () => {
-    store.dispatch({
-        type: "INCREMENT"
-
-    })
-    
-}
-)
+// Increment Button
+ 
