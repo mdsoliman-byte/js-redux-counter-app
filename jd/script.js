@@ -13,13 +13,13 @@ function createReducer(state = InitialState, action) {
     if (action.type === "INCREMENT") {
         return {
             ...state,
-            counter: state.counter + 1
+            counter: state.counter + action.payload
         }
 
     } else if (action.type === "DECREMENT") {
         return {
             ...state,
-            counter: state.counter - 1
+            counter: state.counter - action.payload
         }
     } else {
         return state;
@@ -35,10 +35,12 @@ const ui = () => {
 }
 store.subscribe(ui)
 // Increment Button
-
+// Ui Update 
+ui()
 Increment.addEventListener("click", () => {
     store.dispatch({
-        type: "INCREMENT"
+        type: "INCREMENT",
+        payload: 10
 
     })
 })
@@ -46,7 +48,8 @@ Increment.addEventListener("click", () => {
 
 decrement.addEventListener("click", () => {
     store.dispatch({
-        type: "DECREMENT"
+        type: "DECREMENT",
+        payload: 5
 
     })
 })
