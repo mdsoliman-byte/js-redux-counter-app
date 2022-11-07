@@ -32,4 +32,10 @@ const store = createStore(createReducer);
 
 
 // Increment Button
- 
+
+Increment.addEventListener("click", () => {
+    store.dispatch({
+        type: "INCREMENT"
+
+    })
+})
