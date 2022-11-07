@@ -28,14 +28,25 @@ function createReducer(state = InitialState, action) {
 
 
 // Create Store
-const store = createStore(createReducer);
-
-
+const store = Redux.createStore(createReducer);
+const ui = () => {
+    const state = store.getState();
+    counter.innerText = state.counter
+}
+store.subscribe(ui)
 // Increment Button
 
 Increment.addEventListener("click", () => {
     store.dispatch({
         type: "INCREMENT"
+
+    })
+})
+// decrement Button
+
+decrement.addEventListener("click", () => {
+    store.dispatch({
+        type: "DECREMENT"
 
     })
 })
