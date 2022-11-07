@@ -3,6 +3,10 @@ const counter = document.getElementById("counter");
 const Increment = document.getElementById("increment");
 const decrement = document.getElementById("decrement");
 
+// Action Identifier
+const INCREMENT = "INCREMENT";
+const DECREMENT = "DECREMENT";
+
 
 // Initialize State 
 const InitialState = {
@@ -39,7 +43,7 @@ store.subscribe(ui)
 ui()
 Increment.addEventListener("click", () => {
     store.dispatch({
-        type: "INCREMENT",
+        type: INCREMENT,
         payload: 10
 
     })
@@ -48,7 +52,7 @@ Increment.addEventListener("click", () => {
 
 decrement.addEventListener("click", () => {
     store.dispatch({
-        type: "DECREMENT",
+        type: DECREMENT,
         payload: 5
 
     })
