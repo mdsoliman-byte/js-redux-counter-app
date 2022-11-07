@@ -2,6 +2,8 @@
 const counter = document.getElementById("counter");
 const Increment = document.getElementById("increment");
 const decrement = document.getElementById("decrement");
+// Action Creator 
+
 
 // Action Identifier
 const INCREMENT = "INCREMENT";
@@ -17,13 +19,13 @@ function createReducer(state = InitialState, action) {
     if (action.type === "INCREMENT") {
         return {
             ...state,
-            counter: state.counter + action.payload
+            counter: state.counter + action.payload.count
         }
 
     } else if (action.type === "DECREMENT") {
         return {
             ...state,
-            counter: state.counter - action.payload
+            counter: state.counter - action.payload.count
         }
     } else {
         return state;
@@ -41,19 +43,29 @@ store.subscribe(ui)
 // Increment Button
 // Ui Update 
 ui()
-Increment.addEventListener("click", () => {
-    store.dispatch({
+const increments = () => {
+    return {
         type: INCREMENT,
-        payload: 10
+        payload: {
+            count: 5
+        }
+    }
 
-    })
+}
+const decrements = () => {
+    return {
+        type: DECREMENT,
+        payload: {
+            count: 5
+        }
+
+    }
+}
+Increment.addEventListener("click", () => {
+    store.dispatch(increments())
 })
 // decrement Button
 
 decrement.addEventListener("click", () => {
-    store.dispatch({
-        type: DECREMENT,
-        payload: 5
-
-    })
+    store.dispatch(decrements())
 })
