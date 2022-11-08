@@ -19,13 +19,20 @@ function createReducer(state = InitialState, action) {
     if (action.type === "INCREMENT") {
         return {
             ...state,
-            counter: state.counter + action.payload.count
+            counter: state.counter + action.payload
         }
 
     } else if (action.type === "DECREMENT") {
-        return {
-            ...state,
-            counter: state.counter - action.payload.count
+        if (state.counter <= 0) {
+            return {
+                ...state,
+                counter: 0
+            }
+        } else {
+            return {
+                ...state,
+                counter: state.counter - action.payload
+            }
         }
     } else {
         return state;
@@ -43,29 +50,25 @@ store.subscribe(ui)
 // Increment Button
 // Ui Update 
 ui()
-const increments = () => {
+const increments = (count) => {
     return {
         type: INCREMENT,
-        payload: {
-            count: 5
-        }
+        payload: count
     }
 
 }
-const decrements = () => {
+const decrements = (count) => {
     return {
         type: DECREMENT,
-        payload: {
-            count: 5
-        }
+        payload: count
 
     }
 }
 Increment.addEventListener("click", () => {
-    store.dispatch(increments())
+    store.dispatch(increments(2))
 })
 // decrement Button
 
 decrement.addEventListener("click", () => {
-    store.dispatch(decrements())
+    store.dispatch(decrements(5))
 })
